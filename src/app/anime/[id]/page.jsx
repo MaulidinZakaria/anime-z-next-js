@@ -270,7 +270,7 @@ const Page = ({ params: { id } }) => {
                         </div>
                         <button className="flex items-center justify-center w-[60vw] bg-white text-black py-3 rounded-lg shadow-xl font-semibold text-base">Write a Review</button>
                         <div className="flex flex-col w-[60vw] gap-6">
-                            <div className=""></div>
+                            <div className="flex"></div>
                         </div>
                     </div>
                 </div>
