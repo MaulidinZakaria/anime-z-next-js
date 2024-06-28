@@ -3,6 +3,7 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import { config } from "@fortawesome/fontawesome-svg-core";
+import Footer from "@/components/Footer";
 config.autoAddCss = false;
 
 const gabarito = Gabarito({ subsets: ["latin"] });
@@ -18,6 +19,7 @@ export default function RootLayout({ children }) {
       <body className={`${gabarito.className} bg-black`}>
         <Navbar />
         {children}
+        <Footer />
       </body>
     </html>
   );

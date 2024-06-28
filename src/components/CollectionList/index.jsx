@@ -21,7 +21,7 @@ const AnimeList = ({ api1, api2, api3 }) => {
                 <div className="h-[60%] w-full flex justify-center items-center relative">
                     {api1.data?.map((anime, index) => {
                         return (
-                            <img src={anime.images.webp.large_image_url} alt="" className={divData[index].className} />
+                            <img src={anime.images.webp.large_image_url} alt="" className={divData[index].className} key={index} />
                         );
                     })}
                 </div>
@@ -31,7 +31,7 @@ const AnimeList = ({ api1, api2, api3 }) => {
                 <div className="h-[60%] w-full flex justify-center items-center relative">
                     {api2.data?.map((anime, index) => {
                         return (
-                            <img src={anime.images.webp.large_image_url} alt="" className={divData[index].className} />
+                            <img src={anime.images.webp.large_image_url} alt="" className={divData[index].className} key={index} />
                         );
                     })}
                 </div>
@@ -41,7 +41,7 @@ const AnimeList = ({ api1, api2, api3 }) => {
                 <div className="h-[60%] w-full flex justify-center items-center relative">
                     {api3.data?.map((anime, index) => {
                         return (
-                            <img src={anime.images.webp.large_image_url} alt="" className={divData[index].className} />
+                            <img src={anime.images.webp.large_image_url} alt="" className={divData[index].className} key={index} />
                         );
                     })}
                 </div>

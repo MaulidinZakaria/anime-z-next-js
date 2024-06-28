@@ -8,7 +8,7 @@ const Carrousel = ({ api }) => {
             initTWE({ Carousel });
         };
         init();
-    }, []);
+    }, [api]);
 
     return (
         <div
