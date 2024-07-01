@@ -18,7 +18,7 @@ const SearchInput = () => {
     <div className="relative">
       <input
         type="text"
-        placeholder="cari anime ..."
+        placeholder="Cari Anime ..."
         className=" py-2 pl-3 rounded-md pr-10 w-80"
         ref={searchRef}
         onKeyDown={(e) => {

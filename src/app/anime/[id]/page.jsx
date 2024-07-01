@@ -182,7 +182,7 @@ const Page = ({ params: { id } }) => {
                         <div className="font-semibold text-2xl text-white">
                             Special For You
                         </div>
-                        <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-6 w-full gap-4 lg:gap-6">
+                        <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-6 w-full gap-4 lg:gap-8">
                             {recomendation?.data?.slice(0, 6).map((anime, index) => {
                                 return (
                                     <Link href={`/anime/${anime.entry.mal_id}`} className="cursor-pointer text-[#fff] transition-all duration-300 relative group" key={index}>
@@ -213,14 +213,14 @@ const Page = ({ params: { id } }) => {
                             <div className="font-semibold text-2xl text-white">
                                 Promotion Videos
                             </div>
-                            <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-6 w-full gap-4 lg:gap-8">
+                            <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-6 w-full gap-4 lg:gap-6">
                                 {videos.data.promo.map((video, index) => (
                                     <a href={video.trailer.url} className="cols-span-1 flex flex-col gap-2 group cursor-pointer" key={index}>
-                                        <div className="h-[120px] rounded-lg shadow-lg overflow-hidden relative border-2 border-transparent group-hover:border-[#F0A500] duartion-300 transition-all">
+                                        <div className="h-[140px] rounded-lg shadow-lg overflow-hidden relative border-2 border-transparent group-hover:border-[#F0A500] duartion-300 transition-all">
                                             <div className="absolute h-full w-full bg-black/50 z-[99] group-hover:flex hidden transition-all duration-300 text-[#F0A500] flex justify-center items-center text-4xl">
                                                 <FontAwesomeIcon icon={faPlay} />
                                             </div>
-                                            <img src={video.trailer.images.large_image_url} alt="" className="w-full h-full object-cover group-hover:scale-110 transition-all duration-300" />
+                                            <img src={video.trailer.images.maximum_image_url} alt="" className="w-full h-full object-cover group-hover:scale-110 transition-all duration-300" />
                                         </div>
                                         <div className="flex flex-col items-center justify-center w-full">
                                             <div className="text-center font-semibold text-white">{video.title}</div>
@@ -235,10 +235,10 @@ const Page = ({ params: { id } }) => {
                             <div className="font-semibold text-2xl text-white">
                                 All Episodes
                             </div>
-                            <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-6 w-full gap-4 lg:gap-8">
+                            <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-6 w-full gap-4 lg:gap-6">
                                 {videos.data.episodes.map((video, index) => (
                                     <a href={video.url} className="cols-span-1 flex flex-col gap-2 group cursor-pointer" key={index}>
-                                        <div className="h-[120px] rounded-lg shadow-lg overflow-hidden relative border-2 border-transparent group-hover:border-[#F0A500] duartion-300 transition-all">
+                                        <div className="h-[140px] rounded-lg shadow-lg overflow-hidden relative border-2 border-transparent group-hover:border-[#F0A500] duartion-300 transition-all">
                                             <div className="absolute h-full w-full bg-black/50 z-[99] group-hover:flex hidden transition-all duration-300 text-[#F0A500] flex justify-center items-center text-4xl">
                                                 <FontAwesomeIcon icon={faPlay} />
                                             </div>
@@ -263,10 +263,10 @@ const Page = ({ params: { id } }) => {
                         <div className="font-semibold text-2xl text-white">
                             Anime Characters
                         </div>
-                        <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 w-full gap-4 lg:gap-8">
+                        <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-6 w-full gap-4 lg:gap-10">
                             {characters.data.map((character, index) => (
                                 <div className="cols-span-1 flex flex-col gap-2 group" key={index}>
-                                    <div className="h-[240px] rounded-lg shadow-lg overflow-hidden relative">
+                                    <div className="h-[260px] rounded-lg shadow-lg overflow-hidden relative">
                                         <div className="absolute z-[2] w-full h-full group-hover:opacity-0 opacity-100 transition-all ease-in-out duration-300 top-0">
                                             <img src={character.character.images.webp.image_url} alt="" className="w-full h-full object-cover" />
                                             <div className="absolute h-[40%] w-full bottom-0 flex flex-col items-start justify-end py-3 px-4 bg-gradient-to-t from-black/80 to-transparent">
@@ -296,10 +296,10 @@ const Page = ({ params: { id } }) => {
                         <div className="font-semibold text-2xl text-white">
                             Staff
                         </div>
-                        <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 w-full gap-4 lg:gap-8">
+                        <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-6 w-full gap-4 lg:gap-10">
                             {staffs.data.map((staff, index) => (
                                 <div className="cols-span-1 flex flex-col gap-2 group" key={index}>
-                                    <div className="h-[240px] rounded-lg shadow-lg overflow-hidden">
+                                    <div className="h-[260px] rounded-lg shadow-lg overflow-hidden">
                                         <div className="w-full h-full relative">
                                             <img src={staff.person?.images?.jpg.image_url == 'https://cdn.myanimelist.net/images/questionmark_23.gif?s=f7dcbc4a4603d18356d3dfef8abd655c' ? '/images/profil.jpeg' : staff.person?.images?.jpg.image_url} alt="" className="w-full h-full object-cover" />
                                             <div className="absolute h-[40%] w-full bottom-0 flex flex-col items-start justify-end py-3 px-4 bg-gradient-to-t from-black/80 to-transparent">

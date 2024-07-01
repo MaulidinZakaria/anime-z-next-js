@@ -1,61 +1,59 @@
-import AnimeList from "@/components/AnimeList/index";
-import CollectionList from "@/components/CollectionList/index";
-import Carrousel from "@/components/Carrousel/index";
+import AnimeList from "@/components/AnimeList";
+import CollectionList from "@/components/CollectionList";
+import Carrousel from "@/components/Carrousel";
 import Header from "@/components/AnimeList/Header";
-import { getAnimeResponse, getNestedAnimeResponse, reproduce } from "@/libs/api-libs";
+import { getAnimeResponse } from "@/libs/api-libs";
 
 const Page = async () => {
-  const topAnime = await getAnimeResponse("top/anime", "limit=12");
-  const top3Anime = await getAnimeResponse("top/anime", "limit=3");
-  const upcomingAnime = await getAnimeResponse("seasons/upcoming", "limit=6");
-  const recommendedAnime = await getAnimeResponse("seasons/now", "limit=6");
-  // let recommendedAnime = await getNestedAnimeResponse("recommendations/anime", "entry");
-  // recommendedAnime = reproduce(recommendedAnime, 6)
-
-  const animeTv = await getAnimeResponse("top/anime", "type=tv&limit=3");
-  const animeMovie = await getAnimeResponse("top/anime", "type=movie&limit=3");
-  const animeSpecial = await getAnimeResponse("top/anime", "type=special&limit=3");
+  const [
+    topAnime,
+    top3Anime,
+    upcomingAnime,
+    recommendedAnime,
+    animeTv,
+    animeMovie,
+    animeSpecial,
+  ] = await Promise.all([
+    getAnimeResponse("top/anime", "limit=12"),
+    getAnimeResponse("top/anime", "limit=3"),
+    getAnimeResponse("seasons/upcoming", "limit=6"),
+    getAnimeResponse("seasons/now", "limit=6"),
+    getAnimeResponse("top/anime", "type=tv&limit=3"),
+    getAnimeResponse("top/anime", "type=movie&limit=3"),
+    getAnimeResponse("top/anime", "type=special&limit=3"),
+  ]);
 
   return (
     <>
-      {/* {Top Anime Today} */}
+      {/* Top Anime Today */}
       <section className="relative -top-[10vh]">
         <Carrousel api={top3Anime} />
       </section>
-      <section className="relative z-[2] mb-12 -mt-[15vh] mb-">
-        <Header
-          title="Special For You"
-        ></Header>
+      <section className="relative z-[2] mb-12 -mt-[15vh]">
+        <Header title="Special For You" />
         <AnimeList api={recommendedAnime} />
       </section>
-      {/* {Featured Collection} */}
+      {/* Featured Collection */}
       <section className="mb-12">
-        <Header
-          title="Featured Collection"
-        ></Header>
-        <CollectionList api1={animeTv} api2={animeMovie} api3={animeSpecial} />
+        <Header title="Featured Collection" />
+        <CollectionList
+          api1={animeTv}
+          api2={animeMovie}
+          api3={animeSpecial}
+        />
       </section>
-      {/* {Anime Mendatang} */}
+      {/* Upcoming Anime */}
       <section className="mb-12">
-        <Header
-          title="Upcoming Anime"
-        ></Header>
+        <Header title="Upcoming Anime" />
         <AnimeList api={upcomingAnime} />
       </section>
-      {/* {Anime Terpopuler} */}
+      {/* Popular Anime */}
       <section className="mb-12">
-        <Header
-          title="Popular Anime"
-        ></Header>
-        <AnimeList
-          api={topAnime}
-          linkTitle="Lihat Semua"
-          linkHref="/popular"
-        />
+        <Header title="Popular Anime" />
+        <AnimeList api={topAnime} linkTitle="Lihat Semua" linkHref="/popular" />
       </section>
     </>
   );
 };
 
 export default Page;
-
