@@ -12,7 +12,7 @@ const Page = () => {
             try {
                 // Fetch top 12 anime
                 const top = await getAnimeResponse("top/anime", "limit=25");
-                const ids = top?.data?.map((item) => item.mal_id) || [];
+                const ids = top?.data?.slice(1, 24).map((item) => item.mal_id) || [];
 
                 // Batch fetch news for these anime
                 const newsPromises = ids.map((id) => getAnimeResponse(`anime/${id}/news`));
@@ -25,7 +25,7 @@ const Page = () => {
             } catch (error) {
                 console.error('Error fetching data:', error);
             } finally {
-                setLoading(false); // Set loading to false regardless of success or failure
+                setLoading(false);
             }
         };
 
@@ -70,7 +70,7 @@ const Page = () => {
                                     <img
                                         src={item?.images.jpg.image_url}
                                         alt={item?.title}
-                                        className="w-full h-full object-cover group-hover:scale-125 transition-all duration-300"
+                                        className="w-full h-full object-cover group-hover:scale-125 transition-all duration-300 brightness-90"
                                     />
                                     <div className="absolute px-6 py-3 bottom-0 min-h-[30%] w-full bg-gradient-to-t from-black/80 to-transparent rounded-b-lg flex flex-col justify-end">
                                         <div className="text-sm text-gray-200">

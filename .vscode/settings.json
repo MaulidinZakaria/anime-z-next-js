@@ -1,0 +1,67 @@
+{
+  "workbench.colorTheme": "Tokyo Night",
+  "editor.quickSuggestions": {
+    "strings": "on"
+  },
+  "[html]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "liveServer.settings.donotShowInfoMsg": true,
+  "vscode-edge-devtools.webhintInstallNotification": true,
+  "files.autoSave": "afterDelay",
+  "[php]": {
+    "editor.defaultFormatter": "bmewburn.vscode-intelephense-client"
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "files.associations": {
+    "*.css": "tailwindcss",
+    "*.php": "php",
+    "*.jsx": "javascriptreact"
+  },
+  "workbench.iconTheme": "vscode-icons",
+  "editor.formatOnSave": true,
+  "window.zoomLevel": -1,
+  "emmet.preferences": {},
+  "emmet.triggerExpansionOnTab": true,
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "vscode.typescript-language-features"
+  },
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "[javascriptreact]": {
+    "editor.defaultFormatter": "vscode.typescript-language-features"
+  },
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  "terminal.integrated.env.windows": {},
+  "vscode-pets.theme": "forest",
+  "vscode-pets.petSize": "small",
+  "diffEditor.ignoreTrimWhitespace": true,
+  "github.copilot.editor.enableAutoCompletions": true,
+  "editor.minimap.enabled": false,
+  "tailwindCSS.includeLanguages": {
+    "plaintext": "javascript",
+    "javascript": "javascript",
+    "html": "html",
+    "css": "css",
+    "typescript": "typescript"
+  },
+  "tailwindCSS.experimental.classRegex": [
+    ["className \\=([^;]*);", "'([^']*)'"],
+    ["className \\=([^;]*);", "\"([^\"]*)\""],
+    ["className \\=([^;]*);", "\\`([^\\`]*)\\`"]
+  ],
+  "tailwindCSS.classAttributes": ["class", "className"],
+  "css.validate": false,
+  "editor.inlineSuggest.enabled": true,
+  "[jsonc]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "tailwindCSS.emmetCompletions": true,
+  "reactSnippets.settings.importReactOnTop": false,
+  "reactSnippets.settings.prettierEnabled": true,
+  "reactSnippets.settings.typescript": false
+}
