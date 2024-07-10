@@ -16,6 +16,7 @@ const Page = async () => {
   ] = await Promise.all([
     getAnimeResponse("top/anime", "limit=12"),
     getAnimeResponse("top/anime", "limit=3"),
+    // getAnimeResponse("seasons/now", "limit=3"),
     getAnimeResponse("seasons/upcoming", "limit=6"),
     getAnimeResponse("seasons/now", "limit=6"),
     getAnimeResponse("top/anime", "type=tv&limit=3"),

@@ -41,12 +41,10 @@ const CollectionButton = ({ anime_mal_id, user_email, collectionStatus, image_ur
     }
 
     return (
-        <>
-            <button id='btn' onClick={handleCollection} className="py-2 px-4 bg-[#CF7500] text-white text-base font-semibold rounded-lg shadow-lg transition-all duration-500 hover:bg-[#F0A500] flex items-center gap-2">
-                <FontAwesomeIcon icon={status || collStatus ? faMinus : faPlus} />
-                <p>{status || collStatus ? 'Remove from Collection' : 'Add to Collection'}</p>
-            </button>
-        </>
+        <button id='btn' onClick={handleCollection} className="py-2 px-4 bg-[#CF7500] text-white text-base font-semibold rounded-lg shadow-lg transition-all duration-500 hover:bg-[#F0A500] flex items-center gap-2">
+            <FontAwesomeIcon icon={status || collStatus ? faMinus : faPlus} />
+            <p>{status || collStatus ? 'Remove from Collection' : 'Add to Collection'}</p>
+        </button>
     )
 }
 export default CollectionButton

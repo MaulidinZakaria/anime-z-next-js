@@ -47,7 +47,7 @@ const UserActionButton = ({ user }) => {
                     </ul>
                 </div>
                 :
-                <Link href={actionLink} className="cursor-pointer bg-[#CF7500] py-2 px-5 rounded-lg shadow-lg text-base transition-all duration-300 hover:bg-[#F0A500] text-white text-base font-semibold">Sign In</Link>
+                <Link href={actionLink} className="cursor-pointer bg-[#CF7500] py-2 px-5 rounded-lg shadow-lg text-base transition-all duration-300 hover:bg-[#F0A500] text-white font-semibold">Sign In</Link>
             }
         </div>
     );

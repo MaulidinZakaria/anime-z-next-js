@@ -155,7 +155,14 @@ const Page = ({ params: { id } }) => {
                                         <p>Watched</p>
                                     </button>
                                 </div>
-                                <CollectionButton anime_mal_id={id} user_email={user?.email} collectionStatus={collection} image_url={anime?.data?.images.webp.large_image_url} title={anime?.data?.title} />
+                                {user ?
+                                    <CollectionButton anime_mal_id={id} user_email={user?.email} collectionStatus={collection} image_url={anime?.data?.images.webp.large_image_url} title={anime?.data?.title} />
+                                    :
+                                    <a href="/api/auth/signin" className="py-2 px-4 bg-[#CF7500] text-white text-base font-semibold rounded-lg shadow-lg transition-all duration-500 hover:bg-[#F0A500] flex items-center gap-2">
+                                        <FontAwesomeIcon icon={faPlus} />
+                                        <p>{'Add to Collection'}</p>
+                                    </a>
+                                }
                             </div>
                         </div>
                     </div>

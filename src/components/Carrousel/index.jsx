@@ -66,8 +66,8 @@ const Carrousel = ({ api }) => {
                             /> */}
                             <div className="absolute h-full w-full bg-gradient-to-t from-black to-transparent z-10 top-0"></div>
                             <div
-                                className="absolute h-[80%] w-full flex flex-col justify-end items-start top-0 px-16 text-[#fff] z-20 gap-4">
-                                <div className="text-6xl font-bold">{anime.title}</div>
+                                className="absolute h-[80%] w-full flex flex-col justify-end items-start top-0 px-16 text-[#fff] z-20 gap-4 eczar">
+                                <div className="text-6xl font-bold w-[70%]">{anime.title}</div>
                                 <div className="text-lg w-[50%]">{truncatedSynopsis}</div>
                                 <div className="flex gap-4">
                                     <a href={`/anime/${anime.mal_id}`} className="cursor-pointer text-[#272829] bg-[#fff] py-2 px-5 rounded-lg shadow-lg text-base transition-all duration-300 hover:bg-[#B3AC9D]">See More</a>
