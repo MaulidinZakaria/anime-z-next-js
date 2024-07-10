@@ -22,3 +22,14 @@ model Collection {
 
   @@unique([user_email, anime_mal_id])
 }
+
+model Review {
+  id              Int @id @default(autoincrement())
+  anime_mal_id    String
+  user_email      String
+  username        String
+  user_image      String
+  review          String @db.Text
+  rating          Int?
+  created_at      DateTime @default(now())
+}

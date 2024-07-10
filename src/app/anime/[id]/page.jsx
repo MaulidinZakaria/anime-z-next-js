@@ -3,26 +3,54 @@
 import { getAnimeResponse } from "@/libs/api-libs"
 import Image from "next/image";
 import Link from "next/link";
-import VideoPlayer from "@/components/Utilities/VideoPlayer";
 import { useEffect, useState } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar, faEye, faBookmark } from '@fortawesome/free-regular-svg-icons';
 import { faPlay, faCirclePlay, faPlus, faBookmark as faBookmarkSolid, faCheck } from '@fortawesome/free-solid-svg-icons';
 import CollectionButton from './../../../components/AnimeList/CollectionButton';
+import ReviewInput from "@/components/AnimeList/ReviewInput";
 
 const Page = ({ params: { id } }) => {
     const [user, setUser] = useState(null)
     const [collection, setCollection] = useState(null)
-    const [show, setShow] = useState('overview')
+    const [show, setShow] = useState(() => {
+        if (typeof window !== 'undefined') {
+            const savedShow = localStorage.getItem('show');
+            if (savedShow) {
+                return savedShow;
+            }
+        }
+        return 'overview';
+    })
     const [anime, setAnime] = useState(null)
     const [videos, setVideos] = useState(null)
     const [characters, setCharacters] = useState(null)
     const [staffs, setStaff] = useState(null)
-    const [reviews, setReviews] = useState(null)
+    const [review, setReviews] = useState(null)
     const [recomendation, setRecomendation] = useState(null)
     const [loading, setLoading] = useState(true);
 
-    const fecthUserData = async () => {
+    useEffect(() => {
+        if (typeof window !== 'undefined') {
+            localStorage.setItem('show', show);
+        }
+    }, [show]);
+
+    useEffect(() => {
+        const handleBeforeUnload = () => {
+            localStorage.removeItem('show');
+        };
+
+        window.addEventListener('beforeunload', handleBeforeUnload);
+
+        return () => {
+            window.removeEventListener('beforeunload', handleBeforeUnload);
+            localStorage.removeItem('show');
+        };
+    }, []);
+
+
+    const fetchUserData = async () => {
         try {
             const response = await fetch('/api/v1/user');
             if (!response.ok) {
@@ -36,22 +64,15 @@ const Page = ({ params: { id } }) => {
     }
 
     const fetchCollection = async () => {
+        if (user) {
+            const data = { id, user: user?.email }
 
-        try {
-            if (user) {
-                const data = { id, user: user?.email }
-
-                const response7 = await fetch(`/api/v1/collection/getCollection`, {
-                    method: "POST",
-                    body: JSON.stringify(data),
-                });
-                const dataReturn = await response7.json();
-                setCollection(dataReturn.data);
-            }
-        } catch (error) {
-            console.error('Error fetching data:', error);
-        } finally {
-            setLoading(false);
+            const response7 = await fetch(`/api/v1/collection/getCollection`, {
+                method: "POST",
+                body: JSON.stringify(data),
+            });
+            const dataReturn = await response7.json();
+            setCollection(dataReturn.data);
         }
     }
 
@@ -64,32 +85,34 @@ const Page = ({ params: { id } }) => {
         setCharacters(response3);
         const response4 = await getAnimeResponse(`anime/${id}/staff`);
         setStaff(response4);
-        const response5 = await getAnimeResponse(`anime/${id}/reviews`);
-        setReviews(response5);
         const response6 = await getAnimeResponse(`anime/${id}/recommendations`);
         setRecomendation(response6);
+
+        const dataReview = { id }
+        const response8 = await fetch(`/api/v1/review/getReviews`, {
+            method: "POST",
+            body: JSON.stringify(dataReview),
+        });
+        const result = await response8.json();
+        setReviews(result.data);
     };
 
 
 
     useEffect(() => {
-        fetchData();
-        fecthUserData();
-    }, [show]);
+        fetchUserData();
+    }, []);
 
     useEffect(() => {
         if (user) {
-            fetchCollection();
+            fetchCollection(user.email);
         }
     }, [user]);
 
     useEffect(() => {
-        const init = async () => {
-            const { Modal, Ripple, initTWE } = await import("tw-elements");
-            initTWE({ Dropdown, Ripple });
-        };
-        init();
-    }, []);
+        fetchData();
+        setLoading(false);
+    }, [id]);
 
     return (
         <>
@@ -99,7 +122,7 @@ const Page = ({ params: { id } }) => {
                 </div>
             ) : (
                 <>
-                    <div className="h-[35vh] w-full relative -top-[10vh] relative">
+                    <div className="h-[35vh] w-full relative -top-[10vh]">
                         <img src={anime?.data?.trailer?.images.maximum_image_url ?? anime?.data?.images.webp.large_image_url} alt="" className="w-full h-full object-cover" />
                         <div className="w-full h-full absolute z-[1] left-0 top-0 bg-gradient-to-r from-black/60 to-transparent"></div>
                         <a href={anime?.data?.trailer.url} className="py-2 px-4 bg-white absolute z-[2] right-[64px] bottom-5 text-black text-base font-semibold rounded-lg shadow-lg transition-all duration-300 hover:bg-gray-300 animate-bounce flex gap-2 items-center justify-center">
@@ -107,7 +130,7 @@ const Page = ({ params: { id } }) => {
                             <p>Watch Trailer</p>
                         </a>
                     </div>
-                    <div className="px-16 w-full flex gap-20 relative -mt-[5vh] mb-[150px] relative">
+                    <div className="px-16 w-full flex gap-20 relative -mt-[5vh] mb-[150px]">
                         <div className="w-[350px] h-fit relative">
                             <img src={anime?.data?.images?.webp.large_image_url} alt="" className="w-full rounded-lg  shadow-xl object-cover absolute z-[5] -top-[150px]" />
                         </div>
@@ -265,7 +288,7 @@ const Page = ({ params: { id } }) => {
                         ''}
                     {show == 'videos' ?
                         <div className="px-16 w-full flex flex-col gap-6 mb-12">
-                            {videos.data.promo && videos.data.promo.length > 0 ?
+                            {videos.data?.promo && videos.data?.promo.length > 0 ?
                                 <div className="flex flex-col gap-4">
                                     <div className="font-semibold text-2xl text-white">
                                         Promotion Videos
@@ -274,7 +297,7 @@ const Page = ({ params: { id } }) => {
                                         {videos.data.promo.map((video, index) => (
                                             <a href={video.trailer.url} className="cols-span-1 flex flex-col gap-2 group cursor-pointer" key={index}>
                                                 <div className="h-[140px] rounded-lg shadow-lg overflow-hidden relative border-2 border-transparent group-hover:border-[#F0A500] duartion-300 transition-all">
-                                                    <div className="absolute h-full w-full bg-black/50 z-[99] group-hover:flex hidden transition-all duration-300 text-[#F0A500] flex justify-center items-center text-4xl">
+                                                    <div className="absolute h-full w-full bg-black/50 z-[99] group-hover:flex hidden transition-all duration-300 text-[#F0A500] justify-center items-center text-4xl">
                                                         <FontAwesomeIcon icon={faPlay} />
                                                     </div>
                                                     <img src={video.trailer.images.maximum_image_url} alt="" className="w-full h-full object-cover group-hover:scale-110 transition-all duration-300" />
@@ -287,7 +310,7 @@ const Page = ({ params: { id } }) => {
                                     </div>
                                 </div>
                                 : ''}
-                            {videos.data.episodes && videos.data.episodes.length > 0 ?
+                            {videos.data?.episodes && videos.data?.episodes.length > 0 ?
                                 <div className="flex flex-col gap-4">
                                     <div className="font-semibold text-2xl text-white">
                                         All Episodes
@@ -296,7 +319,7 @@ const Page = ({ params: { id } }) => {
                                         {videos.data.episodes.map((video, index) => (
                                             <a href={video.url} className="cols-span-1 flex flex-col gap-2 group cursor-pointer" key={index}>
                                                 <div className="h-[140px] rounded-lg shadow-lg overflow-hidden relative border-2 border-transparent group-hover:border-[#F0A500] duartion-300 transition-all">
-                                                    <div className="absolute h-full w-full bg-black/50 z-[99] group-hover:flex hidden transition-all duration-300 text-[#F0A500] flex justify-center items-center text-4xl">
+                                                    <div className="absolute h-full w-full bg-black/50 z-[99] group-hover:flex hidden transition-all duration-300 text-[#F0A500] justify-center items-center text-4xl">
                                                         <FontAwesomeIcon icon={faPlay} />
                                                     </div>
                                                     <img src={video.images.jpg.image_url ?? anime?.data?.images.webp.large_image_url} alt="" className="w-full h-full object-cover group-hover:scale-110 transition-all duration-300" />
@@ -379,37 +402,51 @@ const Page = ({ params: { id } }) => {
                                 <div className="font-semibold text-2xl text-white">
                                     Recent Reviews
                                 </div>
-                                <button className="flex items-center justify-center w-[60vw] bg-white text-black py-3 rounded-lg shadow-xl font-semibold text-base mb-2">Write a Review</button>
+                                {user && <ReviewInput anime_mal_id={id} user_email={user?.email} user_image={user?.image} username={user?.name} />}
                                 <div className="flex flex-col w-[60vw] gap-6">
-                                    {reviews?.data?.map((review, index) => (
-                                        <div className="flex w-full gap-6" key={index}>
+                                    {review?.length == 0 ? <div className="flex flex-col w-full gap-4 justify-center items-center">
+                                        <img src="/images/no-data.png" alt="" className="w-[35%]" />
+                                        <div className="text-white text-lg font-semibold">There isn't Review</div>
+                                    </div> : null}
+                                    {review?.map((review) => (
+                                        <div className="flex w-full gap-6" key={review.id}>
                                             <div className="flex justify-center items-start">
-                                                <img alt="" src={review.user.images.webp.image_url} className="size-11 rounded-full object-cover" />
+                                                <img alt="" src={review.user_image} className="size-11 rounded-full object-cover" />
                                             </div>
                                             <div className="flex w-full flex-col gap-2">
-                                                <div className="flex gap-3 justify-start items-center">
-                                                    <div className="text-white text-lg font-semibold">{review.user.username}</div>
-                                                    <div className="text-[16px] text-gray-400 font-thin">{review.date.substring(0, 10)}</div>
+                                                <div className="flex flex-col w-full justify-center items-start gap-1">
+                                                    <div className="flex justify-center items-center gap-4">
+                                                        <div className="text-white text-lg font-semibold">{review.username}</div>
+                                                        <div className="text-[16px] text-gray-400 font-thin">{review.created_at.substring(0, 10)}</div>
+                                                    </div>
+                                                    <div className="flex items-center gap-2 w-fit justify-center">
+                                                        {Array.from({ length: 5 }).map((_, index) => (
+                                                            <svg className={`size-4 transition-all duration-300 ${(review.rating) > index ? "text-yellow-300" : "text-gray-300"}`}
+                                                                aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20" key={index}>
+                                                                <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
+                                                            </svg>
+                                                        ))}
+                                                    </div>
                                                 </div>
                                                 <div className="text-gray-300 text-justify text-base font-light">{review.review}</div>
-                                                <div className="flex gap-3 justify-end">
+                                                {/* <div className="flex gap-3 justify-end">
                                                     <div className="flex flex-col justify-center items-center">
-                                                        <div className="text-xl">👍</div>
-                                                        <div className="text-sm font-normal text-gray-300">{review.reactions.nice}</div>
+                                                        <div className="text-xl cursor-pointer transition-all duration-200 hover:scale-125">👍</div>
+                                                        <div className="text-sm font-normal text-gray-300">0</div>
                                                     </div>
                                                     <div className="flex flex-col justify-center items-center">
-                                                        <div className="text-xl">😍</div>
-                                                        <div className="text-sm font-normal text-gray-300">{review.reactions.love_it}</div>
+                                                        <div className="text-xl cursor-pointer transition-all duration-200 hover:scale-125">😍</div>
+                                                        <div className="text-sm font-normal text-gray-300">0</div>
                                                     </div>
                                                     <div className="flex flex-col justify-center items-center">
-                                                        <div className="text-xl">😂</div>
-                                                        <div className="text-sm font-normal text-gray-300">{review.reactions.funny}</div>
+                                                        <div className="text-xl cursor-pointer transition-all duration-200 hover:scale-125">😂</div>
+                                                        <div className="text-sm font-normal text-gray-300">0</div>
                                                     </div>
                                                     <div className="flex flex-col justify-center items-center">
-                                                        <div className="text-xl">🤔</div>
-                                                        <div className="text-sm font-normal text-gray-300">{review.reactions.confusing}</div>
+                                                        <div className="text-xl cursor-pointer transition-all duration-200 hover:scale-125">🤔</div>
+                                                        <div className="text-sm font-normal text-gray-300">0</div>
                                                     </div>
-                                                </div>
+                                                </div> */}
                                             </div>
                                         </div>
                                     ))}

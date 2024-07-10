@@ -5,6 +5,7 @@ import { getAnimeResponse } from "@/libs/api-libs";
 
 const Page = () => {
     const [sortedNewsData, setSortedNewsData] = useState([]);
+    const [visible, setVisible] = useState(10);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
@@ -38,6 +39,13 @@ const Page = () => {
         return new Intl.DateTimeFormat('id-ID', { month: 'long', day: 'numeric', year: 'numeric' }).format(date);
     };
 
+    const handleShowMore = () => {
+        setVisible((prev) => {
+            if (prev % 3 == 1) return prev + 11;
+            else return prev + 10;        
+        });
+    }
+
     return (
         <>
             {loading ? (
@@ -59,7 +67,7 @@ const Page = () => {
                         </div>
                     </div>
                     <div className="w-full px-16 grid grid-cols-12 gap-8 mb-12 -mt-16">
-                        {sortedNewsData.slice(0, 10).map((item, index) => {
+                        {sortedNewsData.slice(0, visible).map((item, index) => {
                             const colSpanClass = [0, 1, 2].includes(index % 7) ? 'col-span-4' : 'col-span-3';
 
                             return (
@@ -81,7 +89,7 @@ const Page = () => {
                                 </div>
                             );
                         })}
-                        <button className="text-lg font-semibold transition-all duration-300 hover:bg-[#D8D9DA] col-span-12 text-center cursor-pointer bg-white py-2 rounded-lg">
+                        <button onClick={handleShowMore} className="text-lg font-semibold transition-all duration-300 hover:bg-[#D8D9DA] col-span-12 text-center cursor-pointer bg-white py-2 rounded-lg">
                             Show More
                         </button>
                     </div>

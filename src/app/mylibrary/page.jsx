@@ -37,14 +37,14 @@ export const Page = async () => {
                         <button className="py-3 px-6">Collection</button>
                         <div className={`h-[2px] w-full absolute bottom-0 group-hover:bg-white transition-all duration-300 bg-white`}></div>
                     </div>
-                    <div className={`relative text-xl font-medium group hover:text-white transition-all duration-300 cursor-pointer text-gray-400`}>
+                    {/* <div className={`relative text-xl font-medium group hover:text-white transition-all duration-300 cursor-pointer text-gray-400`}>
                         <button className="py-3 px-6">To Watch</button>
                         <div className={`h-[2px] w-full absolute bottom-0 group-hover:bg-white transition-all duration-300 bg-gray-700`}></div>
-                    </div>
+                    </div> */}
                 </div>
-                <button className="flex justify-center items-center gap-2 py-2 px-5 bg-white text-black rounded-lg shadow-lg font-medium text-base transition-all duration-300 hover:bg-[#D8D9DA]">
+                {/* <button className="flex justify-center items-center gap-2 py-2 px-5 bg-white text-black rounded-lg shadow-lg font-medium text-base transition-all duration-300 hover:bg-[#D8D9DA]">
                     <p>Filter</p>
-                </button>
+                </button> */}
             </div>
 
             <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-6 w-full gap-4 lg:gap-8 px-16 mb-12">
