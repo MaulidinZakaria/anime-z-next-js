@@ -8,7 +8,7 @@ const Footer = () => {
                 <div className="text-base font-medium text-white">© 2024 / Anime-Z</div>
                 <div className="flex items-center gap-4">
                     <a
-                        href="#!"
+                        href="https://www.instagram.com/maulidinz_z/"
                         type="button"
                         className="rounded-full bg-transparent p-3 font-medium uppercase leading-normal text-surface transition duration-150 ease-in-out focus:outline-none focus:ring-0 border-2 border-transparent hover:border-white"
                         data-twe-ripple-init>
@@ -24,7 +24,7 @@ const Footer = () => {
                     </a>
 
                     <a
-                        href="#!"
+                        href="https://www.linkedin.com/in/maulidin-zakaria-b0a865250"
                         type="button"
                         className="rounded-full bg-transparent p-3 font-medium uppercase leading-normal text-surface transition duration-150 ease-in-out focus:outline-none focus:ring-0 border-2 border-transparent hover:border-white"
                         data-twe-ripple-init>

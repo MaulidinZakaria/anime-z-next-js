@@ -48,9 +48,12 @@ export const Page = async () => {
             </div>
 
             <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-6 w-full gap-4 lg:gap-8 px-16 mb-12">
+                {collection?.length == 0 ? <div className="col-span-6 flex flex-col w-full gap-4 justify-center items-center">
+                    <img src="/images/no-data.png" alt="" className="w-[22%]" />
+                    <div className="text-white text-lg font-semibold">There isn't Collection</div>
+                </div> : null}
                 {collection?.map((collect, index) => {
                     return (
-
                         <Link href={`/anime/${collect.anime_mal_id}`} className="cursor-pointer text-[#fff] transition-all duration-300 relative group" key={index}>
                             <div className="w-full h-64 overflow-hidden rounded-xl shadow-xl bg-white">
                                 <Image
