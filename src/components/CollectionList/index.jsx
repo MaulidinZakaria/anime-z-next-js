@@ -32,7 +32,7 @@ const CollectionList = ({ api1, api2, api3, api4, api5, api6 }) => {
 
     return (
         <div className="grid grid-cols-1 gap-3 sm:grid-cols-3 px-12 md:px-16 md:gap-6 lg:gap-10">
-            <Link href={`/anime/`} className="flex flex-col cursor-pointer text-[#fff] transition-all relative h-64 bg-[#1A1C20] rounded-xl shadow-lg overflow-hidden group">
+            <Link href={`/collection/tv`} className="flex flex-col cursor-pointer text-[#fff] transition-all relative h-64 bg-[#1A1C20] rounded-xl shadow-lg overflow-hidden group">
                 <div className="h-[40%] w-full justify-center items-center text-xl font-medium flex flex-col">
                     The Best <span className="block">Anime TV</span>
                 </div>
@@ -40,7 +40,7 @@ const CollectionList = ({ api1, api2, api3, api4, api5, api6 }) => {
                     {renderImages(api1)}
                 </div>
             </Link>
-            <Link href={`/anime/`} className="flex flex-col cursor-pointer text-[#fff] transition-all relative h-64 bg-[#1A1C20] rounded-xl shadow-lg overflow-hidden group">
+            <Link href={`/collection/movie`} className="flex flex-col cursor-pointer text-[#fff] transition-all relative h-64 bg-[#1A1C20] rounded-xl shadow-lg overflow-hidden group">
                 <div className="h-[40%] w-full justify-center items-center text-xl font-medium flex flex-col">
                     The Best <span className="block">Anime Movie</span>
                 </div>
@@ -48,7 +48,7 @@ const CollectionList = ({ api1, api2, api3, api4, api5, api6 }) => {
                     {renderImages(api2)}
                 </div>
             </Link>
-            <Link href={`/anime/`} className="flex flex-col cursor-pointer text-[#fff] transition-all relative h-64 bg-[#1A1C20] rounded-xl shadow-lg overflow-hidden group">
+            <Link href={`/collection/special`} className="flex flex-col cursor-pointer text-[#fff] transition-all relative h-64 bg-[#1A1C20] rounded-xl shadow-lg overflow-hidden group">
                 <div className="h-[40%] w-full justify-center items-center text-xl font-medium flex flex-col">
                     The Best <span className="block">Anime Special</span>
                 </div>
@@ -57,7 +57,7 @@ const CollectionList = ({ api1, api2, api3, api4, api5, api6 }) => {
                 </div>
             </Link>
             {api4 ? (
-                <Link href={`/anime/`} className="flex flex-col cursor-pointer text-[#fff] transition-all relative h-64 bg-[#1A1C20] rounded-xl shadow-lg overflow-hidden group">
+                <Link href={`/collection/ona`} className="flex flex-col cursor-pointer text-[#fff] transition-all relative h-64 bg-[#1A1C20] rounded-xl shadow-lg overflow-hidden group">
                     <div className="h-[40%] w-full justify-center items-center text-xl font-medium flex flex-col">
                         The Best <span className="block">Anime ONA</span>
                     </div>
@@ -68,7 +68,7 @@ const CollectionList = ({ api1, api2, api3, api4, api5, api6 }) => {
             ) : null }
 
             {api5 ? (
-                <Link href={`/anime/`} className="flex flex-col cursor-pointer text-[#fff] transition-all relative h-64 bg-[#1A1C20] rounded-xl shadow-lg overflow-hidden group">
+                <Link href={`/collection/music`} className="flex flex-col cursor-pointer text-[#fff] transition-all relative h-64 bg-[#1A1C20] rounded-xl shadow-lg overflow-hidden group">
                     <div className="h-[40%] w-full justify-center items-center text-xl font-medium flex flex-col">
                         The Best <span className="block">Anime Music</span>
                     </div>
@@ -79,7 +79,7 @@ const CollectionList = ({ api1, api2, api3, api4, api5, api6 }) => {
             ) : null }
 
             {api6 ? (
-                <Link href={`/anime/`} className="flex flex-col cursor-pointer text-[#fff] transition-all relative h-64 bg-[#1A1C20] rounded-xl shadow-lg overflow-hidden group">
+                <Link href={`/collection/tv_special`} className="flex flex-col cursor-pointer text-[#fff] transition-all relative h-64 bg-[#1A1C20] rounded-xl shadow-lg overflow-hidden group">
                     <div className="h-[40%] w-full justify-center items-center text-xl font-medium flex flex-col">
                         The Best <span className="block">Anime TV Special</span>
                     </div>

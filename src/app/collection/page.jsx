@@ -14,9 +14,9 @@ export const Page = async () => {
         <div className="my-12">
             <div className="flex justify-between px-16 items-center mb-12">
                 <h3 className="text-center text-2xl text-white">Featured Collection</h3>
-                <button className="flex justify-center items-center gap-2 py-2 px-4 bg-white text-black rounded-lg shadow-lg font-medium text-base transition-all duration-300 hover:bg-[#D8D9DA]">
+                {/* <button className="flex justify-center items-center gap-2 py-2 px-4 bg-white text-black rounded-lg shadow-lg font-medium text-base transition-all duration-300 hover:bg-[#D8D9DA]">
                     <p>Create New</p>
-                </button>
+                </button> */}
             </div>
             <CollectionList
                 api1={tv}

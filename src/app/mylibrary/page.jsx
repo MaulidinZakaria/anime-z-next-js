@@ -34,7 +34,7 @@ export const Page = async () => {
             <div className="px-16 w-full flex justify-between items-center mb-8 -mt-12">
                 <div className="w-fit flex justify-start items-center">
                     <div className={`relative text-xl font-medium group hover:text-white transition-all duration-300 cursor-pointer text-white`}>
-                        <button className="py-3 px-6">Collection</button>
+                        <button className="py-3 px-6">My Collection</button>
                         <div className={`h-[2px] w-full absolute bottom-0 group-hover:bg-white transition-all duration-300 bg-white`}></div>
                     </div>
                     {/* <div className={`relative text-xl font-medium group hover:text-white transition-all duration-300 cursor-pointer text-gray-400`}>
