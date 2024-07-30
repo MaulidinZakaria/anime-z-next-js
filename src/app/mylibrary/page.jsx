@@ -18,11 +18,11 @@ export const Page = async () => {
         <>
             <div className="relative -top-[10vh]">
                 <div className="w-full h-[32vh] relative">
-                    <img src="https://blogger.googleusercontent.com/img/a/AVvXsEhoRQHzPoS5coajfpSgwt8GSCGIeArKNSMOX5I5XzVLGiHqQ4aMzWYWorGZAjM2EiSa_TmXHmBYod1mU55tImCJZwkIj16g6ZANaOXa7euoGcFSDbywxif1cdMWjfGg4TlONz6GYR-J2ZUbq8WD6mzwX-eCIuVT2NNcGK_PjDtA0zCtzdmQAvqLmOqMgci-=w1600" alt="hero" className="w-full h-full object-cover brightness-90" />
+                    <Image height={700} width={1000} src="https://blogger.googleusercontent.com/img/a/AVvXsEhoRQHzPoS5coajfpSgwt8GSCGIeArKNSMOX5I5XzVLGiHqQ4aMzWYWorGZAjM2EiSa_TmXHmBYod1mU55tImCJZwkIj16g6ZANaOXa7euoGcFSDbywxif1cdMWjfGg4TlONz6GYR-J2ZUbq8WD6mzwX-eCIuVT2NNcGK_PjDtA0zCtzdmQAvqLmOqMgci-=w1600" alt="hero" className="w-full h-full object-cover brightness-90" />
                     <div className="h-full w-full bg-black/50 absolute top-0"></div>
                 </div>
                 <div className="absolute bottom-0 flex justify-start px-16 items-center gap-7 w-full py-6">
-                    <img src={user?.image} alt="hero" className="size-[120px] rounded-full shadow-lg object-cover" />
+                    <Image height={200} width={200} src={user?.image} alt="hero" className="size-[120px] rounded-full shadow-lg object-cover" />
 
                     <div className="flex flex-col justify-center items-start gap-1">
                         <h3 className="text-center text-4xl text-white font-bold">{user?.name}</h3>
@@ -49,7 +49,7 @@ export const Page = async () => {
 
             <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-6 w-full gap-4 lg:gap-8 px-16 mb-12">
                 {collection?.length == 0 ? <div className="col-span-6 flex flex-col w-full gap-4 justify-center items-center">
-                    <img src="/images/no-data.png" alt="" className="w-[22%]" />
+                    <Image height={200} width={200} src="/images/no-data.png" alt="" className="w-[22%]" />
                     <div className="text-white text-lg font-semibold">There isn't Collection</div>
                 </div> : null}
                 {collection?.map((collect, index) => {

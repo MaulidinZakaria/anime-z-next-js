@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { getAnimeResponse } from "@/libs/api-libs";
+import Image from 'next/image';
 
 const Page = () => {
     const [sortedNewsData, setSortedNewsData] = useState([]);
@@ -42,7 +43,7 @@ const Page = () => {
     const handleShowMore = () => {
         setVisible((prev) => {
             if (prev % 3 == 1) return prev + 11;
-            else return prev + 10;        
+            else return prev + 10;
         });
     }
 
@@ -55,7 +56,9 @@ const Page = () => {
             ) : (
                 <>
                     <div className="w-full h-[70vh] relative -top-[10vh]">
-                        <img
+                        <Image
+                            height={700}
+                            width={1000}
                             src="https://static0.gamerantimages.com/wordpress/wp-content/uploads/2023/03/spring-2023-anime-lineup-where-to-stream-every-series-featured-image.jpg"
                             alt="Anime News"
                             className="w-full h-full object-cover"
@@ -75,7 +78,9 @@ const Page = () => {
                                     key={index}
                                     className={`${colSpanClass} relative h-[320px] rounded-lg shadow-xl overflow-hidden group`}
                                 >
-                                    <img
+                                    <Image
+                                        height={300}
+                                        width={400}
                                         src={item?.images.jpg.image_url}
                                         alt={item?.title}
                                         className="w-full h-full object-cover group-hover:scale-125 transition-all duration-300 brightness-90"

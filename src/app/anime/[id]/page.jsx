@@ -123,7 +123,7 @@ const Page = ({ params: { id } }) => {
             ) : (
                 <>
                     <div className="h-[35vh] w-full relative -top-[10vh]">
-                        <img src={anime?.data?.trailer?.images.maximum_image_url ?? anime?.data?.images.webp.large_image_url} alt="" className="w-full h-full object-cover" />
+                        <Image height={200} width={200} src={anime?.data?.trailer?.images.maximum_image_url ?? anime?.data?.images.webp.large_image_url} alt="" className="w-full h-full object-cover" />
                         <div className="w-full h-full absolute z-[1] left-0 top-0 bg-gradient-to-r from-black/60 to-transparent"></div>
                         <a href={anime?.data?.trailer.url} className="py-2 px-4 bg-white absolute z-[2] right-[64px] bottom-5 text-black text-base font-semibold rounded-lg shadow-lg transition-all duration-300 hover:bg-gray-300 animate-bounce flex gap-2 items-center justify-center">
                             <FontAwesomeIcon icon={faCirclePlay} />
@@ -132,7 +132,7 @@ const Page = ({ params: { id } }) => {
                     </div>
                     <div className="px-16 w-full flex gap-20 relative -mt-[5vh] mb-[150px]">
                         <div className="w-[350px] h-fit relative">
-                            <img src={anime?.data?.images?.webp.large_image_url} alt="" className="w-full rounded-lg  shadow-xl object-cover absolute z-[5] -top-[150px]" />
+                            <Image height={200} width={200} src={anime?.data?.images?.webp.large_image_url} alt="" className="w-full rounded-lg  shadow-xl object-cover absolute z-[5] -top-[150px]" />
                         </div>
                         <div className="flex flex-col items-start gap-2 w-full">
                             <div className="text-5xl text-white font-bold">{anime?.data?.title}</div>
@@ -307,7 +307,7 @@ const Page = ({ params: { id } }) => {
                                                     <div className="absolute h-full w-full bg-black/50 z-[99] group-hover:flex hidden transition-all duration-300 text-[#F0A500] justify-center items-center text-4xl">
                                                         <FontAwesomeIcon icon={faPlay} />
                                                     </div>
-                                                    <img src={video.trailer.images.maximum_image_url} alt="" className="w-full h-full object-cover group-hover:scale-110 transition-all duration-300" />
+                                                    <Image height={200} width={200} src={video.trailer.images.maximum_image_url} alt="" className="w-full h-full object-cover group-hover:scale-110 transition-all duration-300" />
                                                 </div>
                                                 <div className="flex flex-col items-center justify-center w-full">
                                                     <div className="text-center font-semibold text-white">{video.title}</div>
@@ -329,7 +329,7 @@ const Page = ({ params: { id } }) => {
                                                     <div className="absolute h-full w-full bg-black/50 z-[99] group-hover:flex hidden transition-all duration-300 text-[#F0A500] justify-center items-center text-4xl">
                                                         <FontAwesomeIcon icon={faPlay} />
                                                     </div>
-                                                    <img src={video.images.jpg.image_url ?? anime?.data?.images.webp.large_image_url} alt="" className="w-full h-full object-cover group-hover:scale-110 transition-all duration-300" />
+                                                    <Image height={200} width={200} src={video.images.jpg.image_url ?? anime?.data?.images.webp.large_image_url} alt="" className="w-full h-full object-cover group-hover:scale-110 transition-all duration-300" />
                                                 </div>
                                                 <div className="flex flex-col items-center justify-center w-full">
                                                     <div className="text-center font-semibold text-white">{video.episode}</div>
@@ -355,14 +355,14 @@ const Page = ({ params: { id } }) => {
                                         <div className="cols-span-1 flex flex-col gap-2 group" key={index}>
                                             <div className="h-[260px] rounded-lg shadow-lg overflow-hidden relative">
                                                 <div className="absolute z-[2] w-full h-full group-hover:opacity-0 opacity-100 transition-all ease-in-out duration-300 top-0">
-                                                    <img src={character.character.images.webp.image_url} alt="" className="w-full h-full object-cover" />
+                                                    <Image height={200} width={200} src={character.character.images.webp.image_url} alt="" className="w-full h-full object-cover" />
                                                     <div className="absolute h-[40%] w-full bottom-0 flex flex-col items-start justify-end py-3 px-4 bg-gradient-to-t from-black/80 to-transparent">
                                                         <div className="text-base font-semibold text-white">{character.character.name}</div>
                                                         <div className="text-sm text-gray-300">{character.role}</div>
                                                     </div>
                                                 </div>
                                                 <div className="w-full h-full">
-                                                    <img src={character.voice_actors[0]?.person?.images.jpg.image_url ?? '/images/profil.jpeg'} alt="" className="w-full h-full object-cover" />
+                                                    <Image height={200} width={200} src={character.voice_actors[0]?.person?.images.jpg.image_url ?? '/images/profil.jpeg'} alt="" className="w-full h-full object-cover" />
                                                     <div className="absolute h-[40%] w-full bottom-0 flex flex-col items-start justify-end py-3 px-4 bg-gradient-to-t from-black/80 to-transparent">
                                                         <div className="text-base font-semibold text-white">{character.voice_actors[0]?.person?.name}</div>
                                                         <div className="text-sm text-gray-300">{character.voice_actors[0]?.language}</div>
@@ -388,7 +388,7 @@ const Page = ({ params: { id } }) => {
                                         <div className="cols-span-1 flex flex-col gap-2 group" key={index}>
                                             <div className="h-[260px] rounded-lg shadow-lg overflow-hidden">
                                                 <div className="w-full h-full relative">
-                                                    <img src={staff.person?.images?.jpg.image_url == 'https://cdn.myanimelist.net/images/questionmark_23.gif?s=f7dcbc4a4603d18356d3dfef8abd655c' ? '/images/profil.jpeg' : staff.person?.images?.jpg.image_url} alt="" className="w-full h-full object-cover" />
+                                                    <Image height={200} width={200} src={staff.person?.images?.jpg.image_url == 'https://cdn.myanimelist.net/images/questionmark_23.gif?s=f7dcbc4a4603d18356d3dfef8abd655c' ? '/images/profil.jpeg' : staff.person?.images?.jpg.image_url} alt="" className="w-full h-full object-cover" />
                                                     <div className="absolute h-[40%] w-full bottom-0 flex flex-col items-start justify-end py-3 px-4 bg-gradient-to-t from-black/80 to-transparent">
                                                         <div className="text-base font-semibold text-white">{staff.person.name}</div>
                                                         <div className="text-sm text-gray-300">{staff.positions}</div>
@@ -412,13 +412,13 @@ const Page = ({ params: { id } }) => {
                                 {user && <ReviewInput anime_mal_id={id} user_email={user?.email} user_image={user?.image} username={user?.name} />}
                                 <div className="flex flex-col w-[60vw] gap-6">
                                     {review?.length == 0 ? <div className="flex flex-col w-full gap-4 justify-center items-center">
-                                        <img src="/images/no-data.png" alt="" className="w-[35%]" />
+                                        <Image height={200} width={200} src="/images/no-data.png" alt="" className="w-[35%]" />
                                         <div className="text-white text-lg font-semibold">There isn't Review</div>
                                     </div> : null}
                                     {review?.map((review) => (
                                         <div className="flex w-full gap-6" key={review.id}>
                                             <div className="flex justify-center items-start">
-                                                <img alt="" src={review.user_image} className="size-11 rounded-full object-cover" />
+                                                <Image height={300} width={300} alt="" src={review.user_image} className="size-11 rounded-full object-cover" />
                                             </div>
                                             <div className="flex w-full flex-col gap-2">
                                                 <div className="flex flex-col w-full justify-center items-start gap-1">

@@ -1,4 +1,5 @@
 "use client";
+import Image from "next/image";
 import { useEffect } from "react";
 
 const Carrousel = ({ api }) => {
@@ -51,10 +52,13 @@ const Carrousel = ({ api }) => {
                             data-twe-carousel-item
                             {...(index === 0 && { "data-twe-carousel-active": true })}
                         >
-                            <img
+                            <Image
                                 src={anime.trailer.images.maximum_image_url}
+                                alt="image" 
+                                height={1000}
+                                width={1000}
                                 className="block w-full h-[77vh] object-cover"
-                                alt="image" />
+                                />
                             {/* <iframe
                                 src={anime.trailer.embed_url}
                                 frameborder="0"
