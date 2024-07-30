@@ -11,7 +11,7 @@ const Page = async ({ params }) => {
   return (
     <>
       {/* {Anime Pencarian} */}
-      <section>
+      <section className="pt-4 pb-6">
         <Header
           title={`Pencarian untuk ${keyword}`}
         ></Header>
